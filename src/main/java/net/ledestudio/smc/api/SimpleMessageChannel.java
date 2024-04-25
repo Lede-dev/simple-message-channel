@@ -8,6 +8,8 @@ public interface SimpleMessageChannel {
 
     void close();
 
+    boolean isStarted();
+
     void sendMessage(@NotNull String message);
 
 }

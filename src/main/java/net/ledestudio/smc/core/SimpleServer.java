@@ -12,7 +12,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import io.netty.util.concurrent.GlobalEventExecutor;
 import net.ledestudio.smc.api.SimpleMessageChannel;
-import net.ledestudio.smc.core.SimpleInitializer;
 import org.jetbrains.annotations.NotNull;
 
 import java.net.InetSocketAddress;
@@ -73,6 +72,11 @@ public class SimpleServer implements SimpleMessageChannel {
             bossEventLoopGroup.shutdownGracefully().awaitUninterruptibly();
         }
         LOGGER.info("close smc server.");
+    }
+
+    @Override
+    public boolean isStarted() {
+        return !channels.isEmpty();
     }
 
     @Override

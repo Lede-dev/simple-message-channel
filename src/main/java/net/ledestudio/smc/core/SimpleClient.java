@@ -60,6 +60,14 @@ public class SimpleClient implements SimpleMessageChannel {
     }
 
     @Override
+    public boolean isStarted() {
+        if (serverChannel != null) {
+            return serverChannel.isActive();
+        }
+        return false;
+    }
+
+    @Override
     public void sendMessage(@NotNull String message) {
         serverChannel.writeAndFlush(message.concat("\n"));
     }
